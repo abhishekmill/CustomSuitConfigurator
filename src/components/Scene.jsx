@@ -7,7 +7,15 @@ const Scene = () => {
     <div className="w-full h-screen ">
       <Canvas>
         <OrbitControls />
-        <Environment preset="city" />
+        {/* <Environment preset="city" /> */}
+        <ambientLight intensity={0.4} />
+        <spotLight
+          position={[10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          intensity={1}
+          castShadow
+        />
         <Experience />
       </Canvas>
     </div>
