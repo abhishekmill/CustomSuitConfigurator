@@ -4,61 +4,103 @@ Command: npx gltfjsx@6.5.3 suit.glb --transform --shadows --keepmaterials --keep
 Files: suit.glb [266.18KB] > C:\Users\abhishek\Desktop\CustomSuitConfigurator\public\suit-transformed.glb [188.56KB] (29%)
 */
 
-import React from "react";
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
-
+import * as THREE from "three";
 export function Suit(props) {
-  const { nodes, materials } = useGLTF("/suit-transformed.glb");
-  const path = "/blueTexture.jpg";
-  const material = useLoader(TextureLoader, path);
+  const { nodes, materials } = useGLTF("/Suit.glb");
+  const texture = useLoader(TextureLoader, "/texture.jpg");
+  const material = new THREE.MeshStandardMaterial({ map: texture });
+
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(1.5, 1.5);
   return (
     <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes["2Button_Curved"].geometry}
-        // material={materials["default.001"]}
+        geometry={nodes.S4.geometry}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
-      >
-        <meshStandardMaterial roughness={1}  map={material} />
-      </mesh>
+      />
       <mesh
-        name="button"
         castShadow
         receiveShadow
-        geometry={nodes.S4.geometry}
-        material={materials["Material.001"]}
+        geometry={nodes.Sleeve.geometry}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Button_Hole.geometry}
-        // material={materials["Material.066"]}
+        material={materials["Material.066"]}
+        // material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.S14_4001.geometry}
-        // material={materials["Material.002"]}
+        geometry={nodes.Button_Stitching.geometry}
+        material={materials["Basic Thread"]}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes["1_Thread003"].geometry}
+        material={materials["default.002"]}
+        position={[0, 0.274, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.045}
       />
       <mesh
-        name="back"
+        castShadow
+        receiveShadow
+        geometry={nodes.ChestPocket.geometry}
+        // material={materials["default.003"]}
+        material={material}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes["CL2-3(1-2)"].geometry}
+        // material={materials["Fabric.001"]}
+        material={material}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes["2Button_Curved"].geometry}
+        // material={materials["Fabric 5"]}
+        material={material}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.last_standard001.geometry}
+        // material={materials["default.007"]}
+        material={material}
+        position={[0, 0.274, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.045}
+      />
+      <mesh
         castShadow
         receiveShadow
         geometry={nodes.NoVent.geometry}
-        // material={materials["default.001"]}
+        // material={materials.Fabric}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
-      >
-        <meshStandardMaterial map={material} />
-      </mesh>
+      />
     </group>
   );
 }
 
-useGLTF.preload("/suit-transformed.glb");
+useGLTF.preload("/Suit.glb");
