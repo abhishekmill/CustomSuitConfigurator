@@ -10,7 +10,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import * as THREE from "three";
 export function Suit({ path, props }) {
-  const { nodes, materials } = useGLTF("/Suit.glb");
+  const { nodes, materials } = useGLTF("/suitnotexture.glb");
   const texture = useLoader(TextureLoader, path.path);
   const innerTexture = useLoader(TextureLoader, "/texture/inner.png");
 
@@ -35,8 +35,8 @@ export function Suit({ path, props }) {
         castShadow
         receiveShadow
         geometry={nodes.S4.geometry}
-        material={materials["Plastic Blue 16"]}
-        // material={material}
+        // material={materials["Plastic Blue 16"]}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -137,4 +137,4 @@ export function Suit({ path, props }) {
   );
 }
 
-useGLTF.preload("/Suit.glb");
+useGLTF.preload("/suitnotexture.glb");
