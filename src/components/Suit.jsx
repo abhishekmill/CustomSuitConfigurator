@@ -12,7 +12,10 @@ import * as THREE from "three";
 export function Suit(props) {
   const { nodes, materials } = useGLTF("/Suit.glb");
   const texture = useLoader(TextureLoader, "/texture.jpg");
-  const material = new THREE.MeshStandardMaterial({ map: texture });
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    roughness: 1.5,
+  });
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -23,16 +26,19 @@ export function Suit(props) {
         castShadow
         receiveShadow
         geometry={nodes.S4.geometry}
-        material={material}
+        material={materials["Plastic Blue 16"]}
+        // material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
+        name="sleeve"
         castShadow
         receiveShadow
         geometry={nodes.Sleeve.geometry}
         material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
+
       <mesh
         castShadow
         receiveShadow
@@ -66,6 +72,7 @@ export function Suit(props) {
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
+        name="collar"
         castShadow
         receiveShadow
         geometry={nodes["CL2-3(1-2)"].geometry}

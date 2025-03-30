@@ -1,22 +1,25 @@
 import React from "react";
 import Experience from "./Experience";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Stage } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  SpotLight,
+  Stage,
+} from "@react-three/drei";
 const Scene = () => {
   return (
-    <div className="w-full h-screen bg-gray-800 ">
+    <div className="w-[60%] h-screen bg-gray-800 ">
       <Canvas>
         <OrbitControls />
-        <spotLight
-          position={[0, 15, 0]}
-          angle={0.3}
-          penumbra={1}
-          castShadow
-          intensity={2}
-          shadow-bias={-0.0001}
+        <pointLight intensity={2} color={"white"} position={[1, 2, 3.5]} />
+
+        <Environment
+          preset="city"
+          backgroundRotation={[0, Math.PI / 1, 0]}
+          backgroundBlurriness={1.1}
+          environmentIntensity={0.6}
         />
-        {/* <ambientLight intensity={0.5} /> */}
-        <Environment preset="city" />
 
         <Experience />
       </Canvas>
