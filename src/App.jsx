@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Scene from "./components/Scene";
 import Sidebar from "./components/Sidebar";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import "./index.css";
 function App() {
   const [path, setPath] = useState({
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="flex">
+      <div class=" flex size bg-radial-[at_25%_25%] from-zinc-400 to-blue-100 to-75%">
         <Sidebar setPath={setPath} />
         <Scene path={path} />
       </div>

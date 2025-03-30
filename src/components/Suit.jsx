@@ -5,25 +5,30 @@ Files: suit.glb [266.18KB] > C:\Users\abhishek\Desktop\CustomSuitConfigurator\pu
 */
 
 import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { Decal, useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import * as THREE from "three";
 export function Suit({ path, props }) {
   const { nodes, materials } = useGLTF("/Suit.glb");
   const texture = useLoader(TextureLoader, path.path);
-  const material = new THREE.MeshStandardMaterial({
-    map: texture,
-    roughness: 1.5,
-  });
+  const innerTexture = useLoader(TextureLoader, "/texture/inner.png");
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   if (path.type === "pattern") {
     texture.repeat.set(17, 17);
   } else {
-    texture.repeat.set(1.9, 1.9);
+    texture.repeat.set(1.1, 1.1);
   }
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    roughness: 0.9,
+    metalness: 0.45,
+  });
+
+  innerTexture.repeat.set(0.7, 0.7);
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -74,7 +79,7 @@ export function Suit({ path, props }) {
         // material={materials["default.003"]}
         material={material}
         rotation={[Math.PI / 2, 0, 0]}
-      />
+      ></mesh>
       <mesh
         name="collar"
         castShadow
@@ -85,6 +90,7 @@ export function Suit({ path, props }) {
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
+        name="chest"
         castShadow
         receiveShadow
         geometry={nodes["2Button_Curved"].geometry}
@@ -92,6 +98,7 @@ export function Suit({ path, props }) {
         material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
+
       <mesh
         castShadow
         receiveShadow
@@ -110,6 +117,22 @@ export function Suit({ path, props }) {
         material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
+      <mesh
+        name="inner"
+        position={[0, 0, 0.00001]}
+        scale={0.97}
+        castShadow
+        receiveShadow
+        geometry={nodes.NoVent.geometry}
+        rotation={[Math.PI / 2, 0, 0]}
+      >
+        <meshStandardMaterial
+          map={innerTexture}
+          metalness={1}
+          roughness={0.8}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
     </group>
   );
 }
