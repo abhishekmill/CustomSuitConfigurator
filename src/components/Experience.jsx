@@ -1,10 +1,12 @@
 import React from "react";
 import { Suit } from "./Suit";
 
-const Experience = () => {
+const Experience = ({ path }) => {
   return (
     <>
-      <Suit />
+      <group position={[0, -0.3, 0]}>
+        <Suit path={path} />
+      </group>
     </>
   );
 };

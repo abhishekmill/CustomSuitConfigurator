@@ -7,21 +7,21 @@ import {
   SpotLight,
   Stage,
 } from "@react-three/drei";
-const Scene = () => {
+const Scene = ({ path }) => {
   return (
     <div className="w-[60%] h-screen bg-gray-800 ">
       <Canvas>
         <OrbitControls />
-        <pointLight intensity={2} color={"white"} position={[1, 2, 3.5]} />
+        <pointLight intensity={4} color={"white"} position={[1, 2, 2.5]} />
 
         <Environment
           preset="city"
           backgroundRotation={[0, Math.PI / 1, 0]}
           backgroundBlurriness={1.1}
-          environmentIntensity={0.6}
+          environmentIntensity={0.8}
         />
 
-        <Experience />
+        <Experience path={path} />
       </Canvas>
     </div>
   );

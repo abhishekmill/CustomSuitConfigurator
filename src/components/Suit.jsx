@@ -9,9 +9,9 @@ import { useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import * as THREE from "three";
-export function Suit(props) {
+export function Suit({ path, props }) {
   const { nodes, materials } = useGLTF("/Suit.glb");
-  const texture = useLoader(TextureLoader, "/texture.jpg");
+  const texture = useLoader(TextureLoader, path.path);
   const material = new THREE.MeshStandardMaterial({
     map: texture,
     roughness: 1.5,
@@ -19,7 +19,11 @@ export function Suit(props) {
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(1.5, 1.5);
+  if (path.type === "pattern") {
+    texture.repeat.set(17, 17);
+  } else {
+    texture.repeat.set(1.9, 1.9);
+  }
   return (
     <group {...props} dispose={null}>
       <mesh
