@@ -15,8 +15,8 @@ const Scene = ({ path }) => {
           enablePan={false}
           minPolarAngle={Math.PI / 4} // Restrict lower tilt
           maxPolarAngle={Math.PI / 2} // Restrict upper tilt
-          minAzimuthAngle={-Math.PI / 4} // Restrict left rotation
-          maxAzimuthAngle={Math.PI} // Restrict right rotation
+          // minAzimuthAngle={-Math.PI / 4} // Restrict left rotation
+          // maxAzimuthAngle={Math.PI} // Restrict right rotation
           minDistance={4}
           maxDistance={8}
         />

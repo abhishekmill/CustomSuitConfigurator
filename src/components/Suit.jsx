@@ -9,6 +9,7 @@ import { Decal, useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import * as THREE from "three";
+import { Collar } from "./models.jsx/collar";
 export function Suit({ path, props }) {
   const { nodes, materials } = useGLTF("/suitnotexture.glb");
   const texture = useLoader(TextureLoader, path.path);
@@ -31,6 +32,8 @@ export function Suit({ path, props }) {
 
   return (
     <group {...props} dispose={null}>
+      <Collar material={material} />
+
       <mesh
         castShadow
         receiveShadow
