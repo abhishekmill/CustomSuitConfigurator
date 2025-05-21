@@ -20,14 +20,16 @@ export function SixBtnDoubleBreasted({ material, props }) {
         material={materials["Material.004"]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.076}
-      />
+      >
+        <meshStandardMaterial color={"grey"} />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes["LiningStraight1-4"].geometry}
         material={materials["Material.074"]}
         rotation={[Math.PI / 2, 0, 0]}
-      />
+      ></mesh>
       <mesh
         castShadow
         receiveShadow

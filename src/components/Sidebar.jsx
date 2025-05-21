@@ -1,4 +1,5 @@
 import React from "react";
+import { div } from "three/tsl";
 
 const textureData = [
   {
@@ -47,7 +48,7 @@ const Sidebar = ({ setPath, setButtonType }) => {
   };
 
   return (
-    <div className="w-[40%] mt-[20%] ">
+    <div className="w-[40%] mt-[20%]  ">
       <div className="w-full flex flex-row xl:flex-col ">
         <Menues data={textureData} handleClick={handleClick} />
         <Menues data={ButtonData} handleClick={handleMenuClick} />
@@ -61,13 +62,16 @@ const Menues = ({ data, handleClick }) => {
     <div className="  flex-col xl:flex-row flex justify-start">
       {data.map((item, index) => {
         return (
-          <img
-            key={index}
-            className=" mt-5  mx-5 max-w-32 border-black  border"
-            src={item.imagePath}
-            alt=""
-            onClick={() => handleClick(item)}
-          />
+          <div className="flex justify-center flex-col items-center">
+            <img
+              key={index}
+              className=" mt-5  mx-5 max-w-32 border-black  border"
+              src={item.imagePath}
+              alt=""
+              onClick={() => handleClick(item)}
+            />
+            <div>{item.name}</div>
+          </div>
         );
       })}
     </div>

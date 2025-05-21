@@ -18,7 +18,9 @@ const Scene = () => {
   const [pocketType, setPocketType] = useState("2straight");
   return (
     <div className="w-full flex  h-screen ">
-      <Sidebar setPath={setPath} setButtonType={setButtonType} />
+      <div className="w-full border ">
+        <Sidebar setPath={setPath} setButtonType={setButtonType} />
+      </div>
 
       <Canvas>
         <OrbitControls

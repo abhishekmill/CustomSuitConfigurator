@@ -95,9 +95,10 @@ export function SimpleSuit({ pocketType, buttonType, path, props }) {
               castShadow
               receiveShadow
               geometry={nodes.S4.geometry}
-              material={materials["Material.003"]}
               rotation={[Math.PI / 2, 0, 0]}
-            />
+            >
+              <meshStandardMaterial color={"grey"} />
+            </mesh>
             <mesh
               name="buttonhole"
               castShadow
