@@ -47,8 +47,8 @@ const Sidebar = ({ setPath, setButtonType }) => {
   };
 
   return (
-    <div className="w-[40%] h-screen">
-      <div className="w-full ">
+    <div className="w-[40%] mt-[20%] ">
+      <div className="w-full flex flex-row xl:flex-col ">
         <Menues data={textureData} handleClick={handleClick} />
         <Menues data={ButtonData} handleClick={handleMenuClick} />
       </div>
@@ -58,12 +58,12 @@ const Sidebar = ({ setPath, setButtonType }) => {
 
 const Menues = ({ data, handleClick }) => {
   return (
-    <div className="mt-10 m-10 gap-10 flex-col xl:flex-row flex justify-evenly">
+    <div className=" mt-5  mx-5 flex-col xl:flex-row flex justify-evenly">
       {data.map((item, index) => {
         return (
           <img
             key={index}
-            className=" h-32 border-amber-300 border-2"
+            className=" h-28 w-20 border-amber-300 border"
             src={item.imagePath}
             alt=""
             onClick={() => handleClick(item)}
