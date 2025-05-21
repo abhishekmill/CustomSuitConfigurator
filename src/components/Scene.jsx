@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Environment,
+  Loader,
   OrbitControls,
   SpotLight,
   Stage,
@@ -46,6 +47,7 @@ const Scene = () => {
           environmentIntensity={0.7}
         />
       </Canvas>
+      <Loader />
     </div>
   );
 };
