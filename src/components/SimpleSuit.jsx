@@ -5,8 +5,9 @@ import { TextureLoader } from "three";
 import * as THREE from "three";
 import { SixBtnDoubleBreasted } from "./models.jsx/SixBtnDoubleBreasted";
 import { FourBtnSingle } from "./models.jsx/FourBtnModels";
+import { TwoStraightPockets } from "./TwoStraightPockets";
 
-export function SimpleSuit({ buttonType, path, props }) {
+export function SimpleSuit({ pocketType, buttonType, path, props }) {
   const { nodes, materials } = useGLTF("/simpleSuit.glb");
 
   const texture = useLoader(TextureLoader, path.path);
@@ -23,6 +24,11 @@ export function SimpleSuit({ buttonType, path, props }) {
     map: texture,
     roughness: 0.9,
     metalness: 0.45,
+  });
+  const btnMaterial = new THREE.MeshStandardMaterial({
+    roughness: 0.3,
+    metalness: 0.85,
+    color: "black",
   });
 
   innerTexture.repeat.set(0.7, 0.7);
@@ -64,14 +70,19 @@ export function SimpleSuit({ buttonType, path, props }) {
               rotation={[-Math.PI / 2, 0, 0]}
               scale={0.045}
             />
-            <mesh
-              name="pocket"
-              castShadow
-              receiveShadow
-              geometry={nodes["PK-1"].geometry}
-              material={material}
-              scale={[0.364, 0.148, 0.014]}
-            />
+            {pocketType === "2straight" && (
+              <mesh
+                name="pocket"
+                castShadow
+                receiveShadow
+                geometry={nodes["PK-1"].geometry}
+                material={material}
+                scale={[0.364, 0.148, 0.014]}
+              />
+            )}
+            {pocketType === "2straightOneTicket" && (
+              <TwoStraightPockets material={material} />
+            )}
             <mesh
               castShadow
               receiveShadow
@@ -92,14 +103,14 @@ export function SimpleSuit({ buttonType, path, props }) {
               castShadow
               receiveShadow
               geometry={nodes.Button_Hole.geometry}
-              material={materials["Material.066"]}
+              material={btnMaterial}
               rotation={[Math.PI / 2, 0, 0]}
             />
             <mesh
               castShadow
               receiveShadow
               geometry={nodes.Button_Stitching.geometry}
-              material={materials["default.005"]}
+              material={btnMaterial}
               rotation={[Math.PI / 2, 0, 0]}
             />
             <mesh

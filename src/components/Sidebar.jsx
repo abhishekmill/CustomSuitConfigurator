@@ -58,12 +58,12 @@ const Sidebar = ({ setPath, setButtonType }) => {
 
 const Menues = ({ data, handleClick }) => {
   return (
-    <div className=" mt-5  mx-5 flex-col xl:flex-row flex justify-evenly">
+    <div className="  flex-col xl:flex-row flex justify-start">
       {data.map((item, index) => {
         return (
           <img
             key={index}
-            className=" h-28 w-20 border-amber-300 border"
+            className=" mt-5  mx-5 max-w-32 border-black  border"
             src={item.imagePath}
             alt=""
             onClick={() => handleClick(item)}

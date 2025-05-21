@@ -6,7 +6,7 @@ import "./index.css";
 function App() {
   return (
     <>
-      <div class="bg-red-950 ">
+      <div class=" bg-slate-300 ">
         <Navbar />
         <Scene />
       </div>

@@ -6,17 +6,18 @@ import {
   SpotLight,
   Stage,
 } from "@react-three/drei";
-import Sidebar from "./Sidebar";
 import { SimpleSuit } from "./SimpleSuit";
+import Sidebar from "./Sidebar";
 const Scene = () => {
   const [path, setPath] = useState({
     path: "/texture/4748-3.jpg",
     type: "pattern",
   });
 
-  const [buttonType, setButtonType] = useState("4button");
+  const [buttonType, setButtonType] = useState("2button");
+  const [pocketType, setPocketType] = useState("2straight");
   return (
-    <div className="w-full flex  h-screen bg-red-950 ">
+    <div className="w-full flex  h-screen ">
       <Sidebar setPath={setPath} setButtonType={setButtonType} />
 
       <Canvas>
@@ -31,7 +32,11 @@ const Scene = () => {
         />
         <pointLight intensity={5.5} color={"white"} position={[1, 1, 2.2]} />
 
-        <SimpleSuit buttonType={buttonType} path={path} />
+        <SimpleSuit
+          pocketType={pocketType}
+          buttonType={buttonType}
+          path={path}
+        />
         <Environment
           preset="city"
           backgroundRotation={[0, Math.PI / 1, 0]}
